@@ -1,0 +1,24 @@
+---
+
+Services:
+  apache2:
+    packages: [ apache2, php5 ]
+
+Packages:
+  apache2:
+    files: []
+  php5:
+    files: [ hello.php ]
+
+Files:
+  hello.php:
+    base: /var/www/html/
+    name: hello.php
+    content: >
+      <?php
+        header("Content-Type: text/plain");
+        echo "Hello, world!\n";
+      ?>
+    owner: root
+    group: root
+    mode: "755"

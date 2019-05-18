@@ -1,0 +1,5 @@
+# local.yaml
+Services:
+  apache2:
+    packages: [ apache2 ]
+# Does not even install anything; just restarts a service.

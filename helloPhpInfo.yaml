@@ -1,0 +1,34 @@
+---
+Files:
+  hello.php:
+    base: /var/www/html/
+    name: hello.php
+    content: >
+      <?php
+        header("Content-Type: text/plain");
+        echo "Hello, world!\n";
+      ?>
+    owner: root
+    group: root
+    mode: "755"
+  info.php:
+    base: /var/www/html/
+    name: phpinfo.php
+    content: >
+      <?php
+        header("Content-Type: text/html");
+        phpinfo(); // Comment-out to improve security.
+      ?>
+    owner: root
+    group: root
+    mode: "755"
+
+Packages:
+  apache2:
+    files: []
+  php5:
+    files: [ hello.php, info.php ]
+
+Services:
+  apache2:
+    packages: [ apache2, php5 ]

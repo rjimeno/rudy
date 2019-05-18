@@ -1,0 +1,33 @@
+---
+Files:
+  index:
+    base: /var/www/html/
+    name: index.php
+    content: >
+      <?php
+        header("Content-Type: text/plain");
+        echo "Hello, world from the index!\n";
+      ?>
+    owner: root
+    group: root
+    mode: "755"
+  dir.conf:
+    base: /etc/apache2/mods-available/
+    name: dir.conf
+    content: |
+      <IfModule mod_dir.c>
+      	DirectoryIndex index.php index.cgi index.pl index.html index.xhtml index.htm
+      </IfModule>
+    owner: root
+    group: root
+    mode: "644"
+
+Packages:
+  apache2:
+    files: [ dir.conf]
+  php5:
+    files: [ index ]
+
+Services:
+  apache2:
+    packages: [ apache2, php5 ]
